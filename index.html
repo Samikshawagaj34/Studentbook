@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Studentbook</title>
     <style>
+        body{
+            margin:0 ;
+            padding: 0;
+        }
         .student-card
         {
             border: 1px solid  black;
@@ -14,15 +18,55 @@
             background-color: #f0f0f0;
 
         }
+        .add-student-container
+        {
+            background-color: tomato;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+
+        }
+        .btn-action
+        {
+            padding: 2px 5px;
+            border-radius: 30px;
+            min-width: 60px;
+            border: none;
+            margin-left: 10px;
+            margin-right: 10px;
+            cursor: pointer;
+            background-color: orange;
+            color: black;
+        }
+        .btn-action:hover
+        {
+            color: white;
+            
+        }
+        .student-name
+        {
+            padding: 5px;
+            border-radius: 30px;
+            border: none;
+            margin-right: 10px;
+            background-color: #f0f0f0 ;
+        }
     </style>
     
     
 </head>
 <body>
     <h1>Studentbook</h1>
-    <input type="text" id="student-name" placeholder="enter student name">
+    <div class="add-student-container">
+    <input type="text" class="student-name" id="student-name" placeholder="Enter student name">
 
-    <button type="button" id="add-student" onclick="addStudent()">Add Student</button>
+    <button type="button" class="btn-action" onclick="addStudent()">Add </button>
+
+    <button type="button" class="btn-action"  onclick="removeStudent()">Remove </button>
+</div>
     
 
 
@@ -44,15 +88,12 @@
             return emojis[randomIndex]
         }
         const students = [
-           "samiksha",
-            "pranali",
-            "Abhilasha",
-            "Anushka",
-            "Aaradhya"
+           "samiksha"
+            
 
         ]
 
-        function loadstudents(){
+        function loadStudents(){
 
         
 
@@ -64,16 +105,29 @@
         studentsContainer.innerHTML += `<div class = 'student-card'> ${getRandomEmoji()} ${i+1}) ${students[i]}</div>`
     }
 }
-loadstudents()
+loadStudents();
+
+const studentInput = document.getElementById("student-name");
 
  function addStudent()
  {
-    const studentInput = document.getElementById("student-name")
+    
     students.push(studentInput.value)
-    studentInput.value = ""
-    alert("student added successfully")
-    loadstudents()
+    studentInput.value = "";
+    
+    loadStudents();
    
+ }
+ function removeStudent()
+ {
+   
+
+    const studentIndex = students.indexOf(studentInput.value);
+    studentInput.value = "";
+    students.splice(studentIndex, 1);
+
+    loadStudents();
+
  }
     </script>
    
