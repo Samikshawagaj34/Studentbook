@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studentbook</title>
+    <style>
+        .student-card
+        {
+            border: 1px solid  black;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 20px;
+            background-color: #f0f0f0;
+
+        }
+    </style>
+    
+    
+</head>
+<body>
+    <h1>Studentbook</h1>
+    <input type="text" id="student-name" placeholder="enter student name">
+
+    <button type="button" id="add-student" onclick="addStudent()">Add Student</button>
+    
+
+
+    <div id="students-container"></div>
+
+    <script>
+        function getRandomEmoji()
+        {
+            const emojis = [
+            '👩‍🎓','👩‍⚕️','👩‍🏫','👩‍🌾','👩‍🏭','👩‍🔧' 
+
+            ];
+            const min = 0;
+            const max  = emojis.length-1;
+
+
+            const randomIndex = Math.floor(Math.random() * (max-min +1)) + min;
+
+            return emojis[randomIndex]
+        }
+        const students = [
+           "samiksha",
+            "pranali",
+            "Abhilasha",
+            "Anushka",
+            "Aaradhya"
+
+        ]
+
+        function loadstudents(){
+
+        
+
+        const studentsContainer = document.getElementById("students-container")
+        studentsContainer.innerHTML = ""
+
+        for(let i=0; i<students.length; i++)
+    {
+        studentsContainer.innerHTML += `<div class = 'student-card'> ${getRandomEmoji()} ${i+1}) ${students[i]}</div>`
+    }
+}
+loadstudents()
+
+ function addStudent()
+ {
+    const studentInput = document.getElementById("student-name")
+    students.push(studentInput.value)
+    studentInput.value = ""
+    alert("student added successfully")
+    loadstudents()
+   
+ }
+    </script>
+   
+    
+</body>
+</html>
